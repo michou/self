@@ -125,7 +125,7 @@ Communicator (currently [Jitsi](https://jitsi.org/))
 
 ### Web developer at Valmidra Informatics: July &ndash; August 2003
 
-* implemented modules of the I.R.I.S. (Integrated Regional Information System)
+* implemented three modules of the I.R.I.S. (Integrated Regional Information System)
 web application, based on existing specifications
 * technologies:
   - PHP
