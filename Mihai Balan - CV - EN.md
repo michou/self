@@ -28,7 +28,7 @@ Faculty of Automatic Control and Computer Science
 
 Exploratory testing, scripted testing, automated tests and frameworks, testing
 strategies and tools in different projects. More details below, in reverse
-chronological order.
+chronological order. Date ranges are approximative.
 
 #### Adobe Identity group
 
@@ -43,7 +43,7 @@ chronological order.
 
 #### CSS Regions
 
-* xxx &ndash; February 2014
+* November 2012 &ndash; February 2014
 * contributions to [CSS Regions][css-regions], [CSS fragmentation][css-break] specs
   - spec review and editing
   - bug logging and regression in WebKit &amp; Blink
@@ -56,7 +56,7 @@ chronological order.
 
 #### Edge Animate CC
 
-* Xxx 201A &ndash; yyy 201B
+* September 2011 &ndash; November 2012
 * contributed to Adobe Edge Animate CC
   - created test plan and implemented test cases for Chrome embedding component
   - created automated test framework for Chrome embedding component from scratch
@@ -66,7 +66,7 @@ chronological order.
 
 #### Adobe AIR SDK and runtime
 
-* Zzz 2009 &ndash; ttt 201A
+* November 2009 &ndash; September 2011
 * created and executed test plans for new features:
   - ActionScript APIs
   - `HTMLLoader` component features (enabled by newer WebKit versions)
@@ -83,7 +83,7 @@ chronological order.
 
 #### Adobe Flash Player
 
-* August 2009 &ndash; ??? 2009
+* August 2009 &ndash; November 2009
 * cross browser testing of a browser plugin
   - automated existing test cases 
   - created test plans for new features
