@@ -14,14 +14,6 @@
 * Phone: **+40-729-055.565**
 * Web: **[mihai-balan.info](https://mihai.balan.info)**
 
-## Education
-
-* 2000 &ndash; 2004: Colegiul Național &ldquo;Mihai Viteazu&rdquo;, Bucharest
-* 2004 &ndash; 2009: Bachelor at &ldquo;Politehnica&rdquo; University of
-Bucharest, Faculty of Automatic Control and Computer Science
-* 2009 &ndash; 2011: Master in _IT Management_ at University of Bucharest,
-Faculty of Automatic Control and Computer Science
-
 ## Professional experience
 
 ### Quality Engineer Developer at Adobe Systems Romania: August 2009 &ndash; present
@@ -130,6 +122,14 @@ web application, based on existing specifications
 * technologies:
   - PHP
   - PostgreSQL
+
+## Education
+
+* 2000 &ndash; 2004: Colegiul Național &ldquo;Mihai Viteazu&rdquo;, Bucharest
+* 2004 &ndash; 2009: Bachelor at &ldquo;Politehnica&rdquo; University of
+Bucharest, Faculty of Automatic Control and Computer Science
+* 2009 &ndash; 2011: Master in _IT Management_ at University of Bucharest,
+Faculty of Automatic Control and Computer Science
 
 ## Other skills
 
