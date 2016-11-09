@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Where does design end and testing starts?</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+		.dib {
+			display: inline-block;
+			vertical-align: middle !important;
+		}
+		.contrast {
+			background-color: rgba(16, 16, 16, 0.8);
+			padding: 15px !important;
+		}
+		h2>em {
+			font-style: normal !important;
+			color: red;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+<h1>Where does testing start and design end?</h1>
+<h5 style="text-align: right; color: deepskyblue;">&mdash;bit.ly/1Qa3zoP</h5>
+				</section>
+				<section data-background="#000">
+					<img class="dib" style="height: 70vh; border: none;" src="img/design-and-testing/designer-wordle.png" alt="">
+					<h2 class="dib">vs.</h2>
+					<img class="dib" style="height: 70vh; border: none;" src="img/design-and-testing/tester-wordle.png" alt="">
+					<!-- 
+Designer:100 (Telephoto)
+typography:40
+style:30
+color:30
+shadow:10
+pixel:20
+mock-up:30
+animation:25
+interaction:30
+kerning:20
+
+Tester:100 (Tank lite)
+bug:40
+automation:20
+regression:25
+defect:30
+performance:30
+functional:40
+blackbox:25
+injection:32
+specification:30
+fix:28
+
+					 -->
+				</section>
+				<section data-background="img/design-and-testing/spoons.jpg">
+					<h2 class="contrast">Everything is designed</h2>
+				</section>
+				<section data-background="img/design-and-testing/mugshots.jpg">
+					<h2 class="contrast">Unintentional design has no known authors</h2>
+				</section>
+				<section data-background="img/design-and-testing/testers.jpg">
+					<h2 class="contrast">What is a tester anyway?</h2>
+				</section>
+				<section data-background="img/design-and-testing/socket.jpg">
+					<h2 class="contrast">Why should testers design?</h2>
+				</section>
+				<section data-background="img/design-and-testing/fortune-cookie.jpg">
+					<div class="contrast">
+						<h2>Don&rsquo;t be the<br><em>&ldquo;This is not my job&rdquo;</em>&ndash;guy</h2>
+						<h4 style="text-align: right;">(it can be everyone&rsquo;s job)</h3>
+					</div>
+				</section>
+				<section>
+					<section data-background="img/design-and-testing/goodbye.jpg">
+						<h2 style="text-align: right;">Thank you!</h2>
+					</section>
+					<section data-transition="slide">
+	<h2>Who was that guy?</h2>
+	<h5>(or other questions)</h5>
+	<ul>
+		<li>full-time dad</li>
+		<li>professional tester</li>
+		<li>amateur photographer</li>
+		<li>design enthusiast</li>
+	</ul>
+	<div style="transform: rotate(5deg); width: 45vh; float: right; background-color: #EEE;" >
+		<img src="img/profile.jpg"alt="">
+		<div style="text-align: center; margin-bottom: 15px;"><a href="https://twitter.com/mich0u">@mich0u</a></div>
+	</div>
+					</section>
+					<section data-transition="slide">
+						<h2>Colophon</h2>
+						<p>Built with ♥ in Sublime Text, using <a href="https://lab.hakim.se/reveal">reveal.js</a></p>
+						<p>Word clouds via <a href="https://www.wordle.net/">Wordle</a></p>
+						<p>Spoons from <a href="https://www.flickr.com/photos/rasebo/4671423633/">RaSeBo</a> on flickr</p>
+						<p>Mugshots from <a href="https://www.flickr.com/photos/pmillera4/15806717940/">Peter Miller</a> on flickr</p>
+						<p>Lipsticks from <a href="https://www.flickr.com/photos/jcestnik/4201133965/">Jenny Cestnik</a> on flickr</p>
+						<p>Socket and plug from <a href="https://www.flickr.com/photos/sfllaw/222795669/">Simon Law</a> on flickr</p>
+						<p>Man in the Moon by <a href="https://www.flickr.com/photos/thepreiserproject/11702218745/">the Preiser Project</a> on flickr</p>
+						<p>Fortune cookie by <a href="https://www.flickr.com/photos/rickharris/430890004/">Rick Harris</a> on flickr</p>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+				transition: 'zoom',
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
