@@ -39,14 +39,20 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-<h1>Where does testing start and design end?</h1>
-<h5 style="text-align: right; color: deepskyblue;">&mdash;bit.ly/2eDPDNN</h5>
+					<h1>Where does testing start and design end?</h1>
+					<h5 style="text-align: right; color: deepskyblue;">&mdash;bit.ly/2eDPDNN</h5>
+					<aside class="notes">
+						I want to share with you a thought that cropped up in my mind after reading a designer's ranton current trends in web typography. If you wonder what does it have to do with testing, that's what the next 5 minutes will be about.
+					</aside>
 				</section>
 				<section data-background="#000">
-					<img class="dib" style="height: 70vh; border: none;" src="img/design-and-testing/designer-wordle.png" alt="">
+					<img class="dib" style="height: 450px; border: none;" src="img/design-and-testing/designer-wordle.png" alt="">
 					<h2 class="dib">vs.</h2>
-					<img class="dib" style="height: 70vh; border: none;" src="img/design-and-testing/tester-wordle.png" alt="">
-					<!-- 
+					<img class="dib" style="height: 450px; border: none;" src="img/design-and-testing/tester-wordle.png" alt="">
+					<aside class="notes">
+						(5s) I think most of use have quite different images in their heads when thinking about a tester and about a designer - be it an experience designer, a UI designer or a graphic designer. What you see on this slide is pretty much how they look like in my head.
+					</aside>
+<!-- Wordle descriptions below:
 Designer:100 (Telephoto)
 typography:40
 style:30
@@ -74,39 +80,58 @@ fix:28
 				</section>
 				<section data-background="img/design-and-testing/spoons.jpg">
 					<h2 class="contrast">Everything is designed</h2>
+					<aside class="notes">
+						The thing is, design is everywhere. Whenever you interact with something man-made, some kind of intent and some kind of design is present. Whether you're delighted by the design (as with a Ferrari or an iPhone) or never even think about it, like with the door handles in your home, it's there. But just as design is sometimes obvious (for good or for bad) and sometimes un-noticed, just the same the design (as an activity, this time) is sometimes deliberate and sometimes a mere by-product.
+					</aside>
 				</section>
 				<section data-background="img/design-and-testing/mugshots.jpg">
 					<h2 class="contrast">Unintentional design has no known authors</h2>
+					<aside class="notes">
+						The problem with unintentional (or non-deliberate) design is that nobody is consciously thinking about it (duh). Most often this is the consequence of somebody that is not a designer, not thinking about designing the thing they create, but still designing it nonetheless. Such design is usually driven by gut feeling or experience.
+					</aside>
 				</section>
 				<section data-background="img/design-and-testing/testers.jpg">
 					<h2 class="contrast">What is a tester anyway?</h2>
+					<aside class="notes">
+						But if you think about it, no matter your definition of a tester, I bet it has to do with users and your product. As such, I believe testers are best positioned to, at least, start talking about design.
+					</aside>
 				</section>
 				<section data-background="img/design-and-testing/socket.jpg">
 					<h2 class="contrast">Why should testers design?</h2>
+					<aside class="notes">
+						And I don't necessarily mean you have to learn words like 'kerning' and 'fuchsia' and 'Bezier curve'. Even if you work on an API, a web-service, an internal CLI tool - think about how would your product work best for its users, for your clients or your customers. You already know the product, the users, their use-cases.
+					</aside>
 				</section>
 				<section data-background="img/design-and-testing/fortune-cookie.jpg">
 					<div class="contrast">
 						<h2>Don&rsquo;t be the<br><em>&ldquo;This is not my job&rdquo;</em>&ndash;guy</h2>
-						<h4 style="text-align: right;">(it can be everyone&rsquo;s job)</h3>
+						<h4 style="text-align: right;">(it is everyone&rsquo;s job)</h3>
 					</div>
+					<aside class="notes">
+						Just as quality isn't just a tester's job, design can and should be everyone's job, or at least a real, living thing for everyone in your organization. It's just that you, as a tester, are best positioned to start a discussion about it, to help people turn unintentional design into a deliberate thinking process.
+					</aside>
 				</section>
 				<section>
 					<section data-background="img/design-and-testing/goodbye.jpg">
 						<h2 style="text-align: right;">Thank you!</h2>
+						<aside class="notes">Thank!</aside>
 					</section>
 					<section data-transition="slide">
-	<h2>Who was that guy?</h2>
-	<h5>(or other questions)</h5>
-	<ul>
-		<li>full-time dad</li>
-		<li>professional tester</li>
-		<li>amateur photographer</li>
-		<li>design enthusiast</li>
-	</ul>
-	<div style="transform: rotate(5deg); width: 45vh; float: right; background-color: #EEE;" >
-		<img src="img/profile.jpg"alt="">
-		<div style="text-align: center; margin-bottom: 15px;"><a href="https://twitter.com/mich0u">@mich0u</a></div>
-	</div>
+						<h2>Who was that guy?</h2>
+						<h5>(or other questions)</h5>
+						<ul>
+							<li>full-time dad</li>
+							<li>professional tester</li>
+							<li>amateur photographer</li>
+							<li>design enthusiast</li>
+						</ul>
+						<div style="transform: rotate(5deg); width: 45vh; float: right; background-color: #EEE;" >
+							<img src="img/profile.jpg" class="plain">
+							<div style="text-align: center; margin-bottom: 15px;"><a href="https://mihai-balan.info/">mihai-balan.info</a> | <a href="https://twitter.com/mich0u">@mich0u</a></div>
+						</div>
+						<aside class="notes">
+							Oh, and if you're wondering, I'm Mihai!
+						</aside>
 					</section>
 					<section data-transition="slide">
 						<h2>Colophon</h2>
@@ -130,7 +155,11 @@ fix:28
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				history: true,
+				progress: false,
+				overview: false,
 				transition: 'zoom',
+				width: 800,
+				height: 600,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
