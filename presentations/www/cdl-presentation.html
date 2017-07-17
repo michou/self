@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>7 ± ε lucruri pe care le uităm în goana „de-a ieși” ingineri</title>
+
+		<meta name="description" content="Despre a deveni mai întâi oameni, și apoi ingineri">
+		<meta name="author" content="Mihai Balan">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<script src="//use.edgefonts.net/kranky.js"></script>
+		<!-- <link rel="stylesheet" href="css/kranky.css"> -->
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+		<style>
+		/*Styles for individual slides*/
+		.reveal dl {
+			text-align: center;
+		}
+		.reveal dt {
+			font-weight: bold;
+		}
+		.reveal dd {
+			color: gray;
+			font-style: italic;
+		}
+		.reveal .state-background {
+			background-size: cover;
+		}
+		.reveal h1,
+		.reveal h2 {
+			line-height: 1em;
+		}
+		.image .reveal h1,
+		.image .reveal h2 {
+			font-weight: bold;
+			color: white;
+			text-shadow: black 0 4px 4px, black 4px 0 4px, black 0 -4px 4px, black -4px 0 4px, black 4px 4px 4px, black -4px 4px 4px, black 4px -4px 4px, black -4px -4px 4px;
+			width: 100%;
+		}
+
+		#what h1 {
+			font-family: kranky, sans-serif;
+		}
+		</style>
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="reveal">
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-center>
+					<h2>7 &plusmn; &epsilon; lucruri pe care le uităm în goana <br>„de-a ieși” ingineri</h2>
+					<p>
+						<small><em>miChou, AD 2013</em></small>
+					</p>
+					<aside class="notes">
+- mulțumesc Răzvan pt invitație și ocazia de-a mă mai simți tânăr asistent :D
+					</aside>
+				</section>
+				<section id="what">
+					<h1>Say what?</h1>
+					<aside class="notes">
+- care-i faza cu aceste 7 +/- EPS lucruri?<br>
+- ca să-l citez pe Răzvan, câteva lucruri care mi-ar fi fost util să le știu la 20 de ani, dar și câteva pe care le-am aflat mai spre 27 dar care mi se par cel puțin la fel de importante<br>
+- nu sunt rețete sau adevăruri absolute, ci mai degrabă constatări experimentale, empirice<br>
+- nu vreau să vă conving ci să vă fac atenți și/sau să vă ridic niște semne de-ntrebare<br>
+- deși e posibil să sune f tare a monolog, vă rog aruncați cu întrebări pe loc :)
+					</aside>
+				</section>
+				<section>
+					<h2>Mihai Balan în cifre</h2>
+					<dl>
+						<dt>27 ani</dt>
+							<dd class="fragment roll-in">din '85 :)</dd>
+						<dt>7 / 3 ani</dt>
+							<dd class="fragment roll-in">de Poli &amp; de laboratoare (Programare, SD)</dd>
+						<dt>4 ani</dt>
+							<dd class="fragment roll-in">de Quality Engineer <small>(some call it tester)</small></dd>
+						<dt>Mishu, Poli, Adobe</dt>
+						<dd class="fragment roll-in">în ordinea asta și o grămadă de oameni faini <span style="font-style: normal;">in-between</span> :)</dd>
+						<dt>Fuji, Olympus, Fuji</dt>
+							<dd class="fragment roll-in">wannabe amateur photographer <small>(some call it hipster)</small></dd>
+						<dt><a href="http://twitter.com/mich0u">@mich0u</a></dt>
+							<dd class="fragment roll-in">+ <a href="http://www.flickr.com/photos/mi-chou">flickr</a>, <a href="http://blog2michou.blogspot.com/">blogspot</a>, etc&hellip;</dd>
+					</dl>
+				</section>
+				<section>
+					<h2>Acestea fiind spuse&hellip;</h2>
+					<aside class="notes">
+să purcedem - în principiu, lucrurile „de care o să mă leg” nu au neapărat legătură între ele. Mai degrabă e un mix de povești care sper să se înscrie la categoria „ok, poate fi util mai încolo” și de „sfaturi”/„rugăminți” după care probabil că o să vă întrebați „ce se aberează cu d'astea la noi boșorogu' ăsta?” :D
+					</aside>
+				</section>
+				<section data-state="image" data-background="img/cdl/8403457132_e59913e73a_b.jpg">
+					<h2>Pune întrebări!</h2>
+					<aside class="notes">
+- nu vă temeți să întrebați: 5 întrebări bine puse pot scuti 10 ore/zile de codat și de 2-3 ori mai multe buguri :)<br>
+- extra bonus, e posibil cineva să fi rezolvat o problemă similară<br>
+- dar mai ales, uneori cum pui o întrebare (și ce faci cu răspunsul) spune mai multe despre tine decât un teanc de auto-caracterizări
+					</aside>
+				</section>
+				<section data-state="image" data-background="img/cdl/6796020478_2a31f93fa7_b.jpg">
+					<h2>Vorbește!</h2>
+					<aside class="notes">
+- bancul cu câinele și inginerul, privirea inteligentă, etc.<br>
+- e vorba de a învăța să vorbești, să-ți exprimi gândurile, problemele, sentimentele (yeah, we have those, too)<br>
+- cine a auzit "rubber duck phenomenon" - simpla verbalizare a problemei produce noi conexiuni &rarr; noi idei &rarr; posibile rezolvări<br>
+- asta înseamnă inclusiv să evoluezi dincolo de „NU MERGE” (NEVER, EVER, DO THAT)
+					</aside>
+				</section>
+				<section data-state="image" data-background="img/cdl/6794648868_cbeff53908_b.jpg">
+					<h2>„Poli” mind format</h2>
+					<aside class="notes">
+- continuăm/aprofundăm nițel pe bancul cu câinele și inginerul :) <br>
+- orice meserie/facultate/școală/set susținut de experiență îți formează gândirea într-un anume fel; e important să știi/realizezi care este acel fel și să fii capabil, când e nevoie, pe cât posibil să dai disable la condiționările astea (sau măcar să fii conștient de ele și limitările cu care vin)<br>
+- e.g. abordarea mecanicistă/algoritmică nu prea se potrivește când vine vorba de oameni - și nu e vorba doar de job ci și în viața de zi cu zi<br>
+- nu înlocuiți realitatea cu virtualitatea; oricât de „charming” ar părea socializarea via tehnică nu e același lucru. Remediul? Vorbiți F2F cu oamenii, scrieți scrisori, învățați să vă exprimați a.î. smileys să nu fie absolut necesari pentru înțelegerea mesajului<br>
+- exemple: mimarea smiley-urilor, ROFLMAO with a pokerface, my 9Gag diet (&amp; detox)<br>
+- A fi capabil să te exprimi nu e doar pentru hipsteri, sales guys sau wannabe managers<br>
+- e acel lucru care te ajută să înțelegi, să te înțelegi și să te faci înțeles<br>
+- încercați să vă puneți gândurile pe hârtie; start a blog and strive to imrove<br>
+- most important: stăpâniți engleza. Nu e sofisticare gratuită să poți forma fraze, să știi cum se scrie și când se folosește „whether”<br>
+- corolar: fiți capabili să recunoașteți când good enugh e good enough, dar nu faceți din good enough o filozofie de viață (posibil mai bun sub alt bullet)<br>
+- deși ingineria e prin excelență disciplina good enough-ului (dar asta nu înseamnă mediocritate)<br>
+					</aside>
+				</section>
+				<section data-state="image" data-background="img/cdl/318947873_12028f1b66_b.jpg">
+					<h2>But I can always Google that&hellip;</h2>
+					<aside class="notes">
+- corect, dar în multe din cazuri care e acel X nu e foarte clar<br>
+- trebuie să ai niște cunoștințe/baze/principii care să nu fie pe „external storage”; în acest caz, the more, the merrier - nu știi când poți face niște paralele foarte interesante dacă ai suficient material în cache<br>
+- exemplu: TCP timeouts &amp; regions performance<br>
+- bonus: actually googling is a skill (care se rafinează mult mai bine când înțelegi sistemul și cum funcționează el)
+					</aside>
+				</section>
+				<section data-state="image" data-background="img/cdl/8403454024_e3989463a5_b.jpg">
+					<h1>&nbsp;</h1>
+					<h1>&nbsp;</h1>
+					<h2>Învață din orice,<br>de la oricine <br>(dar nu oricum)</h2>
+					<aside class="notes">
+- a te pune pe poziția „ce pot învăța de la X (curs, om, situație)?” e un mare talent<br>
+- (foarte) posibil să nu iei note maxime, dar o să ieși mai câștigat<br>
+- bitching și/sau a te da mai presus de X (om, curs, situație) nu ajută ba chiar te poate face de cacao (dacă X om se dovedește că de fapt îți dă clasă, de exemplu :) )<br>
+					</aside>
+				</section>
+				<section data-state="image" data-background="img/cdl/4566488562_63abc0a571_z.jpg">
+					<h2>Avem un ego,<br>ce facem cu el?</h2>
+					<h1>&nbsp;</h1>
+					<aside class="notes">
+- ego is good - în doze homeopatice :)<br>
+- nu înseamnă să nu ai coloană vertebrală ci un pic de „modestie” și „dreaptă socoteală”<br>
+- puține sunt cazurile în care e absolut necesar să „aperi adevărul obiectiv”<br>
+- de cele mai multe ori „adevărul obiectiv” e de fapt o convingere pe care o proptim cât de mult putem „with facts, because science!”; „Pacea e mai mare decât dreptatea”
+					</aside>
+				</section>
+				<section>
+					<section data-state="image" data-background="img/cdl/4028425713_926105cdf7_z.jpg">
+						<h2>Meșteșugari sau intelectuali?</h2>
+						<aside class="notes">
+- devenim din ce in ce mai mult niste meșteșugari, ne uităm latura intelectuală<br>
+- don't do that, e păcat; nu vă limitați<br>
+- citiți, dezbateți idei, ieșiți din cercul ăsta îngust al tehnologiei imediate<br>
+- chestie și de limbaj, de gândire, etc.; cerc vicios/virtuos
+						</aside>
+					</section>
+					<section data-state="image" data-background="img/cdl/4751435012_61b13132c6_z.jpg">
+						<h2>Nu pierde vremea!</h2>
+						<aside class="notes">
+- micro (9Gag, facebook, games) și macro (joburi (nașpa) din anul I, arsul etapelor, etc.)<br>
+- Internetul e o minunată sursă de informație inutilă<br>
+- 5-10 ani de acum n-o să regretați că n-ați stat mai mult pe facebook sau prin cluburi cu „tovarășii” ci faptul că n-aveți niște oameni cu care să puteți discuta de la suflet la suflet sau niște oameni cu care să discutați chestii „mai înalte” decât ultimele gadget-uri apărute sau ce deadline-uri mai aveți prin proiectele „de la job”
+						</aside>
+					</section>
+					<section data-state="image" data-background="img/cdl/6152579585_879b528bc2_b.jpg">
+						<h2>Asumă-te!</h2>
+						<aside class="notes">
+- posibil să fie de la sine înțeles, dar trebuie să ne asumăm deciziile pe care luăm (și non-decizia tot o decizie e)<br>
+- de la a scoate o fată la un suc până la ce vrei să faci cu viața ta<br>
+- bottom line suntem liberi dar asta înseamnă că și răspunzători de ce facem<br>
+- nu se poate libertate în spatele scuzelor sau deciziilor altora<br>
+- dacă ați venit la A&amp;C pentru că așa au zis părinții/frații/prietenii think sleep on it a little
+						</aside>
+					</section>
+					<section data-state="image" data-background="img/cdl/3853129475_a0509e0d92_z.jpg">
+						<h2>Amăgire și dez-amăgire</h2>
+						<h1>&nbsp;</h1>
+						<h1>&nbsp;</h1>
+						<aside class="notes">
+- etimologia lui dez-amăgire<br>
+- când vine vorba de oameni nu vă apropriați judecățile altora și nu săriți la concluzii pripite; better off, nu încercați să ajungeți la concluzii finale - you never know the whole story<br>
+- nu idealizați dar nici nu demonizați pe nimeni - toți sunt oameni ca și noi<br>
+						</aside>
+					</section>
+				</section>
+				<section data-state="final">
+					<section>
+						<h1>Întrebări?</h1>
+						<h1>&nbsp;</h1>
+						<h1>Merci fain!</h1>
+					</section>
+				</section>
+				<section data-state="">
+					<h1>Credits</h1>
+					<p>Made using <strong><a href="http://lab.hakim.se/reveal-js/">reveal.js</a></strong></p>
+					<p><strong>Questions</strong> photo on <a href="http://www.flickr.com/photos/oberazzi/318947873/">flickr</a></p>
+					<p><strong>Kranky</strong> font from <a href="https://typekit.com/eulas/000000000000000000012208">TypeKit</a></p>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script type="text/javascript">
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				width: 1024,
+				height: 768,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'zoom', // default/cube/page/concave/zoom/linear/fade/none
+				transitionSpeed: "fast",
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
