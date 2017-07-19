@@ -7,10 +7,12 @@
 		<title>Mocking the real world for fun and profit</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -21,6 +23,16 @@
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
 		<style>
+		img.emoji {
+			border: none !important;
+			box-shadow: none !important;
+			
+			height: 1em;
+			width: 1em;
+			
+			margin: 0 .05em 0 .1em !important;
+			vertical-align: -0.1em;
+		}
 		.dib {
 			display: inline-block;
 			vertical-align: middle !important;
@@ -29,9 +41,18 @@
 			background-color: rgba(16, 16, 16, 0.8);
 			padding: 15px !important;
 		}
-		h2>em {
-			font-style: normal !important;
-			color: red;
+		blockquote.wikipedia-mocking {
+			font-style: normal;
+			font-size: 85%;
+			width: 80%;
+			text-align: left;
+			background-color: rgba(200, 200, 200, 0.65);
+			padding: 0.5em;
+			border-left: 1em rgba(100, 100, 100, 0.4) solid;
+		}
+		blockquote.wikipedia-mocking footer{
+			font-style: italic;
+			font-size: 70%;
 		}
 		</style>
 	</head>
@@ -39,115 +60,74 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					Mocking the real world for fun and profit
-				</section>
-				<section>
-					<h1>Where does testing start and design end?</h1>
-					<h5 style="text-align: right; color: deepskyblue;">&mdash;bit.ly/2eDPDNN</h5>
-					<aside class="notes">
-						Hi!<br>
-						I want to share with you a thought that cropped up in my mind after reading a designer's rant on current trends in web typography. If you wonder what does it have to do with testing, that's what the next 5 minutes will be about.
+					<h1>Mocking the real world for fun and profit</h1>
+					<p>&mdash; Mihai Balan, QE Dev @ Adobe Identity</p>
+					<aside class="notes" data-markdown>
+Hi,
+I'm Mihai Balan and I'm a QE Developer (or Software Engineer in Test as everybody else seems to be
+calling it) in the Identity group here in Adobe. Tonight I want to tell you a couple of real-world
+stories about how we used mocking for a lot more than just unit testing. And I know it's a big no-no
+to mention that before the presentation, but I'm also eager to hear your own stories over pizza and
+beer afterwards.
 					</aside>
 				</section>
-				<section data-background="#000">
-					<img class="dib" style="height: 450px; border: none;" src="img/design-and-testing/designer-wordle.png" alt="">
-					<h2 class="dib">vs.</h2>
-					<img class="dib" style="height: 450px; border: none;" src="img/design-and-testing/tester-wordle.png" alt="">
-					<aside class="notes">
-						(5s pause to allow audience to scan the pictures)<br>
-						I think most of use have quite different images in their heads when thinking about a tester and about a designer &ndash; be it an experience designer, a UI designer or a graphic designer. What you see on this slide is pretty much how they look like in my head.
+				<section data-background="img/mocking/hands.jpg">
+					<aside class="notes" data-markdown="">
+Before we begin proper, a short show of hands &ndash; is there anyone here that **never** _used_ mocking when testing a product / service / whatever you're testing?
 					</aside>
-<!-- Wordle descriptions below:
-Designer:100 (font: Telephoto)
-typography:40
-style:30
-color:30
-shadow:10
-pixel:20
-mock-up:30
-animation:25
-interaction:30
-kerning:20
+				</section>
+				<section data-background="img/mocking/dummy.jpg">
+					<blockquote class="wikipedia-mocking">
+						In <strong class="fragment highlight-blue">object-oriented programming</strong>, mock objects are simulated objects that <span class="fragment highlight-blue">mimic the behavior of real objects in controlled ways</span>. A programmer typically creates a mock object to test the behavior of some other object, in much the same way that a car designer uses <span class="fragment highlight-red">a crash test dummy</span> to simulate the dynamic behavior of a human in vehicle impacts.
+						<footer>
+							&mdash; Wikipedia <sup class="fragment">[citation needed]</sup>
+						</footer>
+					</blockquote>
+					<aside class="notes" data-markdown>
+That definition is restrictive enough (it's OOP only, programmer-only, car-crushing-impact-only)
 
-Tester:100 (font: Tank lite)
-bug:40
-automation:20
-regression:25
-defect:30
-performance:30
-functional:40
-blackbox:25
-injection:32
-specification:30
-fix:28
--->
-				</section>
-				<section data-background="img/design-and-testing/spoons.jpg">
-					<h2 class="contrast">Everything is designed</h2>
-					<aside class="notes">
-						The thing is, design is everywhere. Whenever you interact with something man-made, some kind of intent and some kind of design is present. Whether you&rsquo;re delighted by the design, as with a Ferrari or an iPhone, or never even think about it, like with the door handles in your home, it&rsquo;s there. But just as design is sometimes obvious (for good or for bad) and sometimes un-noticed, just the same the design (as an activity, this time) is sometimes deliberate and sometimes a mere by-product.
-					</aside>
-				</section>
-				<section data-background="img/design-and-testing/mugshots.jpg">
-					<h2 class="contrast">Unintentional design has no known authors</h2>
-					<aside class="notes">
-						The problem with <em>unintentional (or non-deliberate as I call it) design</em> is that nobody is consciously thinking about it (duh). Most often this is the consequence of somebody that is not a designer, not thinking about designing the thing they create, but still designing it nonetheless. Such design is usually driven by gut feeling or experience.
-					</aside>
-				</section>
-				<section data-background="img/design-and-testing/testers.jpg">
-					<h2 class="contrast">What is a tester anyway?</h2>
-					<aside class="notes">
-						But if you think about it, no matter your definition of a tester, I bet it has to do with users and your product. As such, I believe testers are best positioned to, at least, start talking about design.
-					</aside>
-				</section>
-				<section data-background="img/design-and-testing/socket.jpg">
-					<h2 class="contrast">Why should testers design?</h2>
-					<aside class="notes">
-						And I don&rsquo;t necessarily mean you have to learn words like &lsquo;kerning&rsquo; and &lsquo;fuchsia&rsquo; and &lsquo;Bezier curve&rsquo;. Even if you work on an API, a web-service, an internal CLI tool &ndash; think about how would your product work best for its users, for your clients or your customers. You already know the product, the users, their use-cases.
-					</aside>
-				</section>
-				<section data-background="img/design-and-testing/fortune-cookie.jpg">
-					<div class="contrast">
-						<h2>Don&rsquo;t be the<br><em>&ldquo;This is not my job&rdquo;</em>&ndash;guy</h2>
-						<h4 style="text-align: right;">(it is everyone&rsquo;s job)</h3>
-					</div>
-					<aside class="notes">
-						Just as quality isn&rsquo;t just a tester&rsquo;s job, design can and should be everyone&rsquo;s job, or at least a real, living thing for everyone in your organization. It&rsquo;s just that you, as a tester, are best positioned to start a discussion about it, to help people turn unintentional design into a deliberate thinking process.
+But if you think about it, we use "almost-but-not-quite-real" objects all the time when testing &ndash;
+be it mock test data, that barely passes the validations, mock credit card numbers, dummy test files
+and so on.
 					</aside>
 				</section>
 				<section>
-					<section data-background="img/design-and-testing/goodbye.jpg">
-						<h2 style="text-align: right;">Thank you!</h2>
-						<aside class="notes">Thanks!</aside>
+					<h2>Stories of mocking</h2>
+					<ol>
+						<li class="fragment">📔 The textbook mocking</li>
+						<li class="fragment">🤪 The &ldquo;When I&apos;m alone at night, I Google myself&rdquo; mocking</li>
+						<li class="fragment">💌 The &ldquo;Nu răspunzi la SMS&rdquo; mocking</li>
+					</ol>
+					<aside class="notes" data-markdown>
+With the next 3 stories, I'm going to try and convince you (in case I already didn't), that mocking
+can be used in a lot of places and that doing so is really worth it &ndash; both for your products'
+qulity and, sometimes, for your own self-esteem as well.
+
+I gave each of my stories a title...
+					</aside>
+				</section>
+				<section>
+					<h2>The textbook mocking</h2>
+					<section>
+						<pre><code class="java">
+@AutoWired
+private CacheService redisCache;
+						</code></pre>
+						<pre><code class="java">
+@AutoWired
+// definitely **NOT** a Redis cache
+private CacheService redisCache;
+						</code></pre>
 					</section>
-					<section data-transition="slide">
-						<h2>Who was that guy?</h2>
-						<h5>(or other questions)</h5>
-						<ul>
-							<li>full-time dad</li>
-							<li>professional tester</li>
-							<li>amateur photographer</li>
-							<li>design enthusiast</li>
-						</ul>
-						<div style="transform: rotate(5deg); padding: 10px; width: 360px; float: right; background-color: #EEE;" >
-							<img src="img/profile.jpg" class="plain" style="margin: 0;">
-							<div style="text-align: center;"><a style="color: deepskyblue" href="https://mihai-balan.info/">mihai-balan.info</a><br><a style="color: deepskyblue" href="https://twitter.com/mich0u">@mich0u</a></div>
-						</div>
-						<aside class="notes">
-							Oh, and if you&rsquo;re wondering, I&rsquo;m Mihai!
-						</aside>
-					</section>
-					<section data-transition="slide">
-						<h2>Colophon</h2>
-						<p>Built with ♥ in Sublime Text, using <a href="https://lab.hakim.se/reveal">reveal.js</a></p>
-						<p>Word clouds via <a href="http://www.wordle.net/">Wordle</a></p>
-						<p>Spoons from <a href="https://www.flickr.com/photos/rasebo/4671423633/">RaSeBo</a> on flickr</p>
-						<p>Mugshots from <a href="https://www.flickr.com/photos/pmillera4/15806717940/">Peter Miller</a> on flickr</p>
-						<p>Lipsticks from <a href="https://www.flickr.com/photos/jcestnik/4201133965/">Jenny Cestnik</a> on flickr</p>
-						<p>Socket and plug from <a href="https://www.flickr.com/photos/sfllaw/222795669/">Simon Law</a> on flickr</p>
-						<p>Man in the Moon by <a href="https://www.flickr.com/photos/thepreiserproject/11702218745/">the Preiser Project</a> on flickr</p>
-						<p>Fortune cookie by <a href="https://www.flickr.com/photos/rickharris/430890004/">Rick Harris</a> on flickr</p>
-					</section>
+					<section>Foo bar</section>
+					<section>Fish scar</section>
+				</section>
+				<section>
+					<h2>Colophon</h2>
+					<p>Built with ♥ in Sublime Text, using <a href="https://lab.hakim.se/reveal">reveal.js</a></p>
+					<p>Dummy from <a href="https://www.flickr.com/photos/mompl/9116330633/">mompl</a> on flickr</p>
+					<p>Hands from <a href="https://www.flickr.com/photos/bylauryn/13019005805/">Lauryn</a> on flickr</p>
+					<p>Emojis playfully injected using ✨<a href="https://github.com/twitter/twemoji">twEmoji</a>✨</p>
 				</section>
 			</div>
 		</div>
@@ -158,10 +138,11 @@ fix:28
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+				backgroundTransition: 'slide',
 				history: true,
 				progress: false,
 				overview: false,
-				transition: 'zoom',
+				transition: 'slide',
 				width: 800,
 				height: 600,
 
@@ -169,10 +150,18 @@ fix:28
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true }
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
 				]
 			});
-			Reveal.configure({ showNotes: Reveal.getQueryHash()['showNotes'] });
+			Reveal.addEventListener('ready', function(event) {
+				Reveal.configure({ showNotes: Reveal.getQueryHash()['showNotes'] });
+			});
+			
+			document.addEventListener('DOMContentLoaded', function(event) {
+				console.log(event);
+				twemoji.parse(document.body);
+			});
 		</script>
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
