@@ -16,15 +16,15 @@
     + in our case, we were testing a brand new micro service built with Java (OOP all the things) and Spring (DI all the things)
         * DI is even nicer (or not, depending on who you're asking) as it allows further decoupling between resource usage and creation
         * this means that where a developer sees
-        ```java
+```java
 @AutoWired
 private CacheService redisCache;
-        ```
+```
         I see
-        ```java
+```java
 @AutoWired
 private CacheService redisCache; // definitely **NOT** a Redis cache
-        ```
+```
     + going back to our story, brand new micro-service + Spring = some <3 for Integration in the Small tests
         * we wanted to test across the whole stack, but without going through the Internet
         * there are some tools built on top of Spring that enable this kind of testing, `mockMVC` being one of them
@@ -35,6 +35,7 @@ private CacheService redisCache; // definitely **NOT** a Redis cache
         * was it worth it?
             - we caught some timing-sensitive bugs that we would've had a hard time catching otherwise
             - we were able to have a viable test suite run a build time
+
 - "Nu raspunzi la SMS" mocking
     + another cool feature we worked on allows users to use SMS codes to reset their account password
         * this is usually done by your service using another service to send an SMS with a known payload (e.g. verification code)
@@ -53,6 +54,7 @@ private CacheService redisCache; // definitely **NOT** a Redis cache
         * definitely, a lot of $$$ worth-it
         * good opportunity to practice our Ops-fu
         * paved the way for other glorious mocks
+
 - "When I'm alone at night, I Google myself" mocking
     - another feature that we worked on consisted in allowing users to log in using their Google accounts; we already implemented support for facebook
     - the problem was, depending on whether a certain social account was never before used or not, different code paths were taken inside our product

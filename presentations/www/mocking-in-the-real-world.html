@@ -10,7 +10,9 @@
 		<link rel="stylesheet" href="css/theme/white.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/atom-one-light.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
 
 		<script src="//twemoji.maxcdn.com/2/twemoji.min.js?2.3.0"></script>
 
@@ -33,13 +35,8 @@
 			margin: 0 .05em 0 .1em !important;
 			vertical-align: -0.1em;
 		}
-		.dib {
-			display: inline-block;
-			vertical-align: middle !important;
-		}
-		.contrast {
-			background-color: rgba(16, 16, 16, 0.8);
-			padding: 15px !important;
+		.reveal p {
+			text-align: left;
 		}
 		blockquote.wikipedia-mocking {
 			font-style: normal;
@@ -54,6 +51,33 @@
 			font-style: italic;
 			font-size: 70%;
 		}
+		.left-pad {
+			padding-left: 1em !important;
+		}
+		code {
+			font-family: 'Fira Mono', monospace !important;
+		}
+
+		p code {
+			color: rgb(96, 96, 96);
+		}
+
+		span.dense {
+			font-size: 80%;
+			color: rgb(96, 96, 96);
+		}
+
+		.dense p,
+		.dense li,
+		.dense pre code {
+			font-size: 90%;
+		}
+
+		.denser p,
+		.denser li,
+		.denser pre code {
+			font-size: 80%;
+		}
 		</style>
 	</head>
 	<body>
@@ -61,7 +85,7 @@
 			<div class="slides">
 				<section>
 					<h1>Mocking the real world for fun and profit</h1>
-					<p>&mdash; Mihai Balan, QE Dev @ Adobe Identity</p>
+					<p style="text-align: right;">&mdash; Mihai Balan, QE Dev @ Adobe Identity</p>
 					<aside class="notes" data-markdown>
 Hi,
 I'm Mihai Balan and I'm a QE Developer (or Software Engineer in Test as everybody else seems to be
@@ -94,9 +118,9 @@ and so on.
 				<section>
 					<h2>Stories of mocking</h2>
 					<ol>
-						<li class="fragment">📔 The textbook mocking</li>
-						<li class="fragment">🤪 The &ldquo;When I&apos;m alone at night, I Google myself&rdquo; mocking</li>
-						<li class="fragment">💌 The &ldquo;Nu răspunzi la SMS&rdquo; mocking</li>
+						<li class="fragment">📔 The mocking textbook 101</li>
+						<li class="fragment">🤪 &ldquo;When I&rsquo;m alone at night, I Google myself&rdquo;</li>
+						<li class="fragment">📵 &ldquo;Nu răspunzi la SMS&rdquo;</li>
 					</ol>
 					<aside class="notes" data-markdown>
 With the next 3 stories, I'm going to try and convince you (in case I already didn't), that mocking
@@ -107,20 +131,158 @@ I gave each of my stories a title...
 					</aside>
 				</section>
 				<section>
-					<h2>The textbook mocking</h2>
 					<section>
-						<pre><code class="java">
-@AutoWired
-private CacheService redisCache;
-						</code></pre>
-						<pre><code class="java">
-@AutoWired
-// definitely **NOT** a Redis cache
-private CacheService redisCache;
-						</code></pre>
+						<h2>📔 Textbook mocking</h2>
+						<p class="fragment">OOP and polymorphism make it easy to swap components as long as they preserve the interface</p>
+						<p class="fragment">DI makes it even easier, by decoupling resource usage and creation<br>
+							<span class="left-pad">&ndash; some solutions can even hotswap</span>
+						</p>
 					</section>
-					<section>Foo bar</section>
-					<section>Fish scar</section>
+					<section>
+						<h2>📔 The system under test</h2>
+						<p>
+							Brand new micro-service, built with<br>
+							<span class="left-pad"><strong>☕ Java</strong> <span style="display: inline-block;" class="fragment fade-up">OOP all the things!</span><br></span>
+							<span class="left-pad"><strong>🍃 Spring</strong> <span style="display: inline-block;" class="fragment fade-up">DI all the things!</span></span>
+						</p>
+						<p class="fragment">
+							External dependencies:<br>
+							<span class="left-pad">🐬 Database (MySQL)<br></span>
+							<span class="left-pad">📑 Persistent cache (Redis)<br></span>
+							<span class="left-pad">🗄 Logging<br></span>
+							<em>etc.</em>
+						</p>
+					</section>
+					<section>
+						<h2>📔 Integration testing in the small</h2>
+						<p>Tests multiple components in concert</p>
+						<p>Lighter-weight than full-blown integration tests</p>
+						<div class="left-pad dense fragment">
+							<p>No network involved</p>
+							<p>No need to boot-up the app server</p>
+						</div>
+						<p class="fragment">Spring-supported, developers-approved 🤑</p>
+					</section>
+					<section>
+						<h2>📔 Integration testing in the small &ndash; in practice</h2>
+						<p>Mock what you don&rsquo;t care about with <code>Mockito</code>, mock shallowly what you do care about</p>
+						<p>Use <code>MockMVC</code> to simulate requests to your endpoints and get the responses</p>
+					</section>
+					<section>
+						<h2>📔 Integration testing in the small &ndash; in practice</h2>
+						<div class="denser">
+						<pre><code class="java">//The declaration in the micro service
+@Autowired
+private CacheService redisCache;
+&hellip;
+// Somewhere else, in a file far away &ndash; our mock "Redis"
+@Service
+public class ExpiringMapCacheService implements CacheService {
+    private final Map&lt;CacheKey, ExpirableValue&gt; map =
+        Collections.synchronizedMap(
+            new PassiveExpiringMap&lt;&gt;((key, value) -&gt; value.expire)
+        );
+
+    @Override
+    public &lt;T&gt; T get(CacheKey key) { &hellip; }
+    // and all the other methods a respectable CacheService has
+}</code></pre>
+						</div>
+					</section>
+					<section>
+						<h2>📔 Was it worth it?</h2>
+						<p>We caught some timing-sensitive bugs</p>
+						<p>We expanded the build-time test suite</p>
+						<p>Easier debugging for failing tests<br>
+							<span class="left-pad fragment">✨ happy developers ✨</span></p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>🤪 When I&rsquo;m alone at night, I Google myself</h2>
+						<p class="fragment">Add support for logging in with social accounts</p>
+						<p class="fragment">First implemented Facebook support<br>
+							<span class="left-pad fragment">💖 MUCH TESTING FRIENDLY. SUCH WOW</span><br>
+							<span class="left-pad fragment">😿 SUCH SLOW. MUCH FLAKY</span>
+						</p>
+						<p class="fragment">Now add Google too <span class="fragment">😱</span></p>
+					</section>
+					<section>
+						<h2>🤪 Can we test Google?</h2>
+						<p>No way to create test accounts<br>
+							<span class="fragment left-pad">&ndash; without a real phone number behind them</span>
+						</p>
+						<p>Difficult to automate login from AWS<br>
+							<span class="fragment left-pad">&ndash; unless you still have that phone number</span>
+						</p>
+						<p>Some tests need fresh, never-before-seen users<br>
+							<span class="fragment left-pad">&ndash; CI, baby! 🔴🔵</span>
+						</p>
+					</section>
+					<section data-background="img/mocking/susi.png">
+					</section>
+					<section data-background="img/mocking/google.png"></section>
+					<section>
+						<h2>🤪 How did we do it?</h2>
+						<p class="fragment">🐍 + AWS = 👍</p>
+						<p class="fragment">Reverse engineer the APIs</p>
+						<p class="fragment">Reverse engineer the UI <span class="fragment">🤔</span></p>
+						<p class="fragment">Configurable Google endpoints</p>
+					</section>
+					<section>
+						<h2>🤪 Was it worth it?</h2>
+						<p>We were able to test!</p>
+						<p>Easier debugging while developing the feature</p>
+						<p>Decreased test run times</p>
+						<p class="fragment">Fun! 🐍</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>📵 Nu răspunzi la SMS</h2>
+						<p class="fragment">Add option to reset password via text message</p>
+						<p class="fragment">Provider had a <em>staging</em> environment for feature development</p>
+						<p class="fragment">Need to do performance testing on our side of the service <span class="fragment">💸💸💸</span></p>
+					</section>
+					<section data-background="img/mocking/phone-recovery.png"></section>
+					<section>
+						<h2>📵 Performance testing gotchas</h2>
+						<p>Provider&rsquo;s staging environment<br>
+							<span class="left-pad fragment">&ndash; not fast enough</span></p>
+						<p><code>NOP</code>-ing the calls to the external services<br>
+							<span class="left-pad fragment">&ndash; not an option</span></p>
+						<p>Don&rsquo;t break the bank<br>
+							<span class="left-pad fragment">&ndash; if at all possible</span></p>
+					</section>
+					<section>
+						<h2>📵 A mock was born</h2>
+						<p class="fragment">☕ Java, 🍃 Spring, and not much else</p>
+						<p class="fragment">Deployed on AWS, accessible over the Internet</p>
+						<p class="fragment">Exposing same API, but always returning success</p>
+						<p class="fragment">Product code was already instrumented</p>
+						<p class="fragment">🤖 + 🤖 = 💪</p>
+					</section>
+					<section>
+						<h2>📵 Was it worth it?</h2>
+						<p>Very 💰💰💰 much</p>
+						<p>
+							<span style="padding: 0 0.2em; display: inline-block; border: 1px solid lightgreen; background: green; color: white; border-radius: 3px;">
+								+100 XP
+							</span> for our DevOps skills
+						</p>
+						<p>Paved the way for other creative mocks</p>
+					</section>
+				</section>
+				<section>
+					<h2>Closing remarks</h2>
+					<p>🔧 Mocking can be used in many situations</p>
+					<p>💻 Being able to use mocking might require developer effort<br>
+						<span class="dense left-pad">&ndash; don&rsquo;t think just about mocking, but <em>testability</em> in general</span>
+					</p>
+					<p>🚲 Don&rsquo;t reinvent the wheel; unless it&rsquo;s cheaper</p>
+				</section>
+				<section>
+					<h1>Thank you!</h1>
 				</section>
 				<section>
 					<h2>Colophon</h2>
@@ -151,7 +313,7 @@ private CacheService redisCache;
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
 					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true }
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
 			Reveal.addEventListener('ready', function(event) {
