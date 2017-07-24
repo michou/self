@@ -86,17 +86,17 @@
 				<section>
 					<h1>Mocking the real world for fun and profit</h1>
 					<p style="text-align: right;">&mdash; Mihai Balan, QE Dev @ Adobe Identity</p>
-					<aside class="notes" data-markdown>
+					<aside class="notes" data-trim data-markdown>
 Hi,
 I'm Mihai Balan and I'm a QE Developer (or Software Engineer in Test as everybody else seems to be
 calling it) in the Identity group here in Adobe. Tonight I want to tell you a couple of real-world
-stories about how we used mocking for a lot more than just unit testing. And I know it's a big no-no
+stories about how we used mocking for a lot more than just unit testing. Also, I know it's a big no-no
 to mention that before the presentation, but I'm also eager to hear your own stories over pizza and
 beer afterwards.
 					</aside>
 				</section>
 				<section data-background="img/mocking/hands.jpg">
-					<aside class="notes">
+					<aside class="notes" data-trim>
 Before we begin proper, a short show of hands<br>
 &ndash; is there anyone here that doesn't know what mocking is?<br>
 &ndash; is there anyone who **never** _used_ mocking when testing a product / service?
@@ -109,8 +109,8 @@ Before we begin proper, a short show of hands<br>
 							&mdash; Wikipedia <sup class="fragment">[citation needed]</sup>
 						</footer>
 					</blockquote>
-					<aside class="notes" data-markdown>
-As far as definitions go, let's see what Wikipedia has to say about mocking, since we all know that Wikipedia is the source of truth.
+					<aside class="notes" data-trim data-markdown>
+As far as definitions go, let's see what Wikipedia has to say about mocking, since we all know that Wikipedia is the source of truth. _(click)_
 
 Now, that definition is restrictive enough (it's OOP only, programmer-only, car-crushing-impact-only)
 
@@ -126,7 +126,7 @@ and so on.
 						<li class="fragment">🤪 &ldquo;When I&rsquo;m alone at night, I Google myself&rdquo;</li>
 						<li class="fragment">📵 &ldquo;Nu răspunzi la SMS&rdquo;</li>
 					</ol>
-					<aside class="notes" data-markdown>
+					<aside class="notes" data-trim data-markdown>
 With the next 3 stories, I'm going to try and convince you (in case I already didn't), that mocking
 can be used in a lot of places and that doing so is really worth it &ndash; both for your products'
 qulity and, sometimes, for your own self-esteem as well.
@@ -141,7 +141,7 @@ I gave each of my stories a title...
 						<p class="fragment">DI makes it even easier, by decoupling resource usage and creation<br>
 							<span class="left-pad">&ndash; some solutions can even hotswap</span>
 						</p>
-						<aside class="notes" data-markdown>
+						<aside class="notes" data-trim data-markdown>
 The Wikipedia definition, 2 slides ago, explicitly mentions Object-oriented programming. That's because
 OOP and polymorphism make it easy to swap components that share a common interface without changes to
 the underlying code &ndash; and that makes mocking easy.
@@ -164,7 +164,7 @@ further by decoupling resource usage and creation and allowing live hotswapping.
 							<span class="left-pad">🗄 Logging<br></span>
 							<em>etc.</em>
 						</p>
-						<aside class="notes" data-markdow>
+						<aside class="notes" data-trim data-markdow>
 In our case, we were building a brand new micro service; built with Java & Spring
 
 As any micro service it also had dependencies on MySQL, Redis, logging, etc.
@@ -179,7 +179,7 @@ As any micro service it also had dependencies on MySQL, Redis, logging, etc.
 							<p>No need to boot-up the app server</p>
 						</div>
 						<p class="fragment">Spring-supported, developers-approved 🤑</p>
-						<aside class="notes" data-markdown>
+						<aside class="notes" data-trim data-markdown>
 Since it was rather self-contained, we wanted to try something new, namely Integration in the small.
 
 Integration in the small (some might know it as functional testing) tests multiple components in concert.
@@ -196,7 +196,7 @@ we had some support out of the box.
 						<p class="fragment">Mock shallowly what you do care about</p>
 						<p class="fragment">Use <code>MockMVC</code> to simulate requests to your endpoints and get the responses</p>
 						<p class="fragment">Enjoy TestNG 🥂</p>
-						<aside class="notes" data-markdown>
+						<aside class="notes" data-trim data-markdown>
 How we went about implementing this was that we mocked the things that weren't the object of the test
 by using Mockito. This is a mocking library that basically allows to create a mock out of any object;
 by default the mocks have the same interface as the mocked object but all methods are NOPs.
@@ -231,7 +231,7 @@ public class ExpiringMapCacheService implements CacheService {
     // and all the other methods a respectable CacheService has
 }</code></pre>
 						</div>
-						<aside class="notes" data-markdown>
+						<aside class="notes" data-trim data-markdown>
 In our case we have the declaration of our Redis client in the service under test, but somewhere down
 the line we implement our shallow mock that is basically just a map. Spring takes care of injecting the
 mocked cache where it needs to
@@ -253,7 +253,7 @@ ResourceResponse createResponse =
 assertEquals(createResponse.getId(), cacheService.get(KEY).getId());
 }</code></pre>
 						</div>
-						<aside class="notes" data-markdown>
+						<aside class="notes" data-trim data-markdown>
 So you could create a request, execute it, make assertions at HTTP level and then check in the
 cache for consistency, all within a coupld of lines of code.
 						</aside>
@@ -264,7 +264,7 @@ cache for consistency, all within a coupld of lines of code.
 						<p class="fragment">We expanded the build-time test suite</p>
 						<p class="fragment">Easier debugging for failing tests<br>
 							<span class="left-pad fragment">✨ happy developers ✨</span></p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 The extra effort was definitely worth it:
 
 * we caught some timing sensitive-bugs
@@ -282,7 +282,7 @@ The extra effort was definitely worth it:
 							<span class="left-pad fragment">😿 SUCH SLOW. MUCH FLAKY</span>
 						</p>
 						<p class="fragment">Now add Google too <span class="fragment">😱</span></p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 One of the features we just released is the ability to use your facebook / Google account to log in
 to our service. In terms of how we implemented this, we first added support for facebook, which was
 awesome, as they have a lot of support (APIs) for testing.
@@ -305,7 +305,7 @@ And then we were told we had to add Google in the mix as well. And fast.
 						<p class="fragment">Some tests need fresh, never-before-seen users<br>
 							<span class="fragment left-pad">&ndash; CI, baby! 🔴🔵</span>
 						</p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 So we naturally asked ourselves, how do we test for Google?
 
 Because you can't create test accounts - definitely not programatically, and even manually you had to
@@ -316,12 +316,12 @@ And because we run the tests on CI, we needed fresh new accounts for each test r
 						</aside>
 					</section>
 					<section data-background="img/mocking/susi.png">
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 Just to make yourself an idea, that's what our page looked like.
 						</aside>
 					</section>
 					<section data-background="img/mocking/google.png">
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 And that's how Google looked like - in our mock.
 						</aside>
 					</section>
@@ -331,7 +331,7 @@ And that's how Google looked like - in our mock.
 						<p class="fragment">Reverse engineer the APIs</p>
 						<p class="fragment">Reverse engineer the UI <span class="fragment">🤔</span></p>
 						<p class="fragment">Configurable Google endpoints</p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 This was basically a rather simple and plain web service built with python and deployed in the cloud
 using Elastic BeanStalk.
 
@@ -351,7 +351,7 @@ mock side by side, but it was basically just wiring property files and Spring pr
 						<p class="fragment">Easier debugging while developing the feature</p>
 						<p class="fragment">Decreased test run times</p>
 						<p class="fragment">Fun! 🐍</p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 First and foremost this was important because it allowed us to test our Google integration.
 
 On top of that, having a mock that we controlled allowed us to easily reproduce edge cases and it helped
@@ -370,7 +370,7 @@ Not last, for me it was fun and very instructive, as I learned a lot about deplo
 						<p class="fragment">Add option to reset password via text message</p>
 						<p class="fragment">Provider had a <em>staging</em> environment for feature development</p>
 						<p class="fragment">Need to do performance testing on our side of the service <span class="fragment">💸💸💸</span></p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 Our third story happened a couple of years ago, when we added the ability to reset your password by
 typing in a code received over text vs. a link in your inbox.
 
@@ -382,7 +382,7 @@ we were thinking about how to keep the costs down.
 						</aside>
 					</section>
 					<section data-background="img/mocking/phone-recovery.png">
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 Basically that was the UI
 						</aside>
 					</section>
@@ -394,7 +394,7 @@ Basically that was the UI
 							<span class="left-pad fragment">&ndash; not an option</span></p>
 						<p class="fragment">Don&rsquo;t break the bank<br>
 							<span class="left-pad fragment">&ndash; if at all possible</span></p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 From past as well as first-hand experiences, we knew that there were some gotchas about this kind of load
 tests.
 
@@ -416,7 +416,7 @@ car - and we wanted to avoid that.
 						<p class="fragment">Exposing same API, but always returning success</p>
 						<p class="fragment">Product code was already instrumented</p>
 						<p class="fragment">🤖 + 🤖 = 💪</p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 As such, a mock was born.
 
 It was written in Java, Spring and not much else.
@@ -443,7 +443,7 @@ the test continued smoothly.
 							</span> for our DevOps skills
 						</p>
 						<p class="fragment">Paved the way for other creative mocks</p>
-						<aside class="notes" data-markown>
+						<aside class="notes" data-trim data-markown>
 First of all, this saved us a lot of money we didn't give to the SMS provider for sending texts out in the void.
 
 The whole ordeal also taught us a thing or two about DevOps and networking and scaling.
@@ -460,7 +460,7 @@ the Google mock I talked about earlier
 						<span class="dense left-pad">&ndash; don&rsquo;t think just about mocking, but <em>testability</em> in general</span>
 					</p>
 					<p class="fragment">🚲 Don&rsquo;t reinvent the wheel; unless it&rsquo;s cheaper</p>
-					<aside class="notes" data-markown>
+					<aside class="notes" data-trim data-markown>
 Mocking is not just for unit tests - you can use it for integration testing, performance testing, even security testing, you can use it for fault injection as well.
 
 It doesn't come free though - but you should see the cost as an investment in the general testability of the product.
