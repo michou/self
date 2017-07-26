@@ -1,0 +1,9 @@
+{
+	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor.tmTheme",
+	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Dark.tmTheme",
+	"color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Yellow.tmTheme",
+	// "color_scheme": "Packages/MarkdownEditing/MarkdownEditor-Focus.tmTheme",
+	"highlight_line": true,
+	"line_numbers": true,
+	"rulers": [80, 100]
+}

@@ -1,0 +1,16 @@
+{
+    "editor.fontFamily": "'Ubuntu Mono'",
+    "editor.fontSize": 17,
+    "editor.fontLigatures": true,
+    "editor.rulers": [
+        80, 100
+    ],
+    "editor.showFoldingControls": "always",
+    "editor.minimap.renderCharacters": false,
+    "editor.renderWhitespace": "all",
+    "workbench.colorTheme": "Monokai Dimmed",
+    "emmet.useNewEmmet": true,
+    "workbench.editor.closeOnFileDelete": false,
+    "window.restoreWindows": "all",
+    "workbench.iconTheme": "material-icon-theme"
+}
