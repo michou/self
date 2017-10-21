@@ -12,7 +12,7 @@
 
 * Email: **mihai.balan@gmail.com**
 * Phone: **+40-729-055.565**
-* Web: **[mihai-balan.info](https://mihai.balan.info)**
+* Web: **[mihai-balan.info](https://mihai-balan.info)**
 
 ## Professional experience
 
