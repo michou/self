@@ -1,16 +1,18 @@
 {
-    "editor.fontFamily": "'Ubuntu Mono'",
-    "editor.fontSize": 17,
+    "telemetry.enableTelemetry": false,
     "editor.fontLigatures": true,
+    "editor.fontFamily": "'Fira Code', Consolas, 'Ubuntu Mono', 'Courier New', monospace",
+    "editor.fontSize": 16,
     "editor.rulers": [
         80, 100
     ],
     "editor.showFoldingControls": "always",
     "editor.minimap.renderCharacters": false,
     "editor.renderWhitespace": "all",
-    "workbench.colorTheme": "Monokai Dimmed",
-    "emmet.useNewEmmet": true,
-    "workbench.editor.closeOnFileDelete": false,
+    "workbench.colorTheme": "Material",
+    "emmet.triggerExpansionOnTab": true,
+    "workbench.editor.highlightModifiedTabs": true,
     "window.restoreWindows": "all",
-    "workbench.iconTheme": "material-icon-theme"
+    "window.titleBarStyle": "native",
+    "workbench.iconTheme": "material-icon-theme",
 }
