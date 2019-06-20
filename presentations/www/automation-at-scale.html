@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>From Jenkins apprentice to AWS master: running automation at scale</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/atom-one-light.css">
+
+		<script src="https://twemoji.maxcdn.com/2/twemoji.min.js?12.0.4" crossorigin="anonymous"></script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+		img.emoji {
+			border: none !important;
+			box-shadow: none !important;
+			
+			height: 1em;
+			width: 1em;
+			
+			margin: 0 .05em 0 .1em !important;
+			vertical-align: -0.1em;
+		}
+		.reveal p {
+			text-align: left;
+		}
+		.reveal h1,
+		.reveal h2,
+		.reveal h3 {
+			font-weight: 900;
+		}
+		.left-pad {
+			padding-left: 1em !important;
+		}
+
+		p code {
+			color: rgb(96, 96, 96);
+		}
+
+		span.dense {
+			font-size: 80%;
+			color: rgb(96, 96, 96);
+		}
+
+		.dense p,
+		.dense li,
+		.dense pre code {
+			font-size: 90%;
+		}
+
+		.denser p,
+		.denser li,
+		.denser pre code {
+			font-size: 80%;
+		}
+		.dimmer {
+			opacity: 0.4 !important;
+		}
+		p.subpoint {
+			padding-left: 1em;
+			font-size: 90%;
+			margin: 0.25em 0;
+			color:darkslategray;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 2em;">
+						<span class="dimmer">From</span> Jenkins apprentice<br><span class="dimmer">to</span> AWS master
+					</h1>
+					<h2 style="font-size: 1.8em">Running automation at scale</h2>
+					<p style="text-align: right;">&mdash; Mihai Balan, Adobe Identity/IMS</p>
+				</section>
+				<section>
+					<section>
+						<h2>Key takeaways</h2>
+					</section>
+					<section>
+						<section>
+							<h2>🙀🔫</h2>
+							<h3>Use forced change as an opportunity to do things right</h3>
+							<div class="fragment">
+								<p>Even if it means sneaking work in</p>
+								<p>Try to take in and reasses the big picture</p>
+								<p class="subpoint">Unexpected things might end up requiring change</p>
+							</div>
+						</section>
+						<section>
+							<h2>☁️🏆</h2>
+							<h3>If you go cloud, make the best of it</h3>
+							<!-- <div>
+								<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">so, you avoid vendor lock-in by building your own. and then later realize you still have vendor lock-in, but you&#39;re the vendor, and there are no other customers. oops.</p>&mdash; Alex Lambert (@alambert) <a href="https://twitter.com/alambert/status/958050456101642241?ref_src=twsrc%5Etfw">January 29, 2018</a></blockquote>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+							</div> -->
+							<div class="fragment">
+								<p>Don&rsquo;t roll your own</p>
+								<p>Don&rsquo;t worry about vendor lock-in (just yet)</p>
+							</div>
+						</section>
+						<h2>👷🏻💩</h2>
+						<h3>Orchestrating <em>on-prem</em> *and*<br> <em>cloud-based</em> Jenkins is crappy</h3>
+						<div class="fragment">
+							<p>&hellip; but it can be done</p>
+							<p>We did it with a mix of shared storage (AWS S3), polling (HTTP) and a lot of brittle conventions</p>
+						</div>
+					</section>
+					<!-- <section>
+						<h2>🐣🐓</h2>
+						<h3>Stepping up should happen when growing becomes painful</h3>
+						<div class="fragment">
+							<p>Not before (but not too late, either)</p>
+							<p>Not because it sounds cool</p>
+						</div>
+					</section> -->
+				</section>
+				<section>
+					<h2>Identity at a glance</h2>
+					<section>
+						<p>Sign-in and sign-up</p>
+						<p class="fragment">But so much more&hellip;</p>
+						<p class="fragment subpoint">Federation</p>
+						<p class="fragment subpoint">Account recovery</p>
+						<p class="fragment subpoint">Security</p>
+						<p class="fragment subpoint">APIs</p>
+					</section>
+					<section>
+						<p class="fragment">Multiple internal clients</p>
+						<p class="fragment">Third party integrations</p>
+						<p class="fragment">External services dependencies</p>
+					</section>
+				</section>
+				<section>
+					<h2>IMS environments</h2>
+					<p>We don&rsquo;t test in Prod <span class="dense fragment">(much)</span></p>
+					<p class="fragment">Multiple levels of pre-Prod environments</p>
+					<p class="fragment subpoint">Internal public</p>
+					<p class="fragment subpoint">Dev experimental</p>
+					<p class="fragment subpoint">CI validation</p>
+				</section>
+				<section>
+					<h2>A product&rsquo;s coming-of-age</h2>
+					<p class="fragment">Feature footprint and complexity</p>
+					<p class="fragment subpoint"><span class="dimmer">from</span> custom UIs for each supported platform <span class="dimmer">to</span> one UI to rule them all <span class="dense fragment">(now at v3)</span></p>
+					<p class="fragment subpoint"><span class="dimmer">from</span> one user type <span class="dimmer">to</span> 3+ types of users</p>
+					<p class="fragment subpoint">multiple federation models</p>
+					<p class="fragment">Operational footprint and complexity</p>
+					<p class="fragment subpoint"><span class="dimmer">from</span> own datacenter <span class="dimmer">to</span> multi-cloud, multi-region</p>
+					<p class="fragment subpoint"><span class="dimmer">from</span> 4 components <span class="dimmer">to</span> 40+ components</p>
+				</section>
+				<section>
+					<h2>Growing with tests</h2>
+					<section>
+						<p>What did change</p>
+						<p class="fragment subpoint"><span class="dimmer">from</span> 1500 tests <span class="dimmer">to</span> 9000+ tests</p>
+						<!-- <p class="fragment subpoint"><span class="dimmer">from</span> 1 CI environment <span class="dimmer">to</span> multiple CI environments</p> -->
+						<p class="fragment subpoint"><span class="dimmer">from</span> tests and code running on the same machine <span class="dimmer">to</span> cloud-based Jenkins slaves</p>
+						<p class="fragment subpoint"><span class="dimmer">from</span> a lone mock mail server <span class="dimmer">to</span> multiple mocked & real external services</p>
+						<p class="fragment subpoint"><span class="dimmer">from</span> jMeter <span class="dimmer">to</span> Soasta and Gatling</p>
+					</section>
+					<section>
+						<p>What didn&rsquo;t change</p>
+						<p class="fragment subpoint">TestNG-based test suite, run from Jenkins</p>
+						<p class="fragment subpoint">a mix of Selenium and <code>HttpClient</code>-based tests</p>
+						<p class="fragment subpoint">mostly end-to-end integration tests, with <span class="fragment">(too few)</span> unit & functional tests</p>
+					</section>
+					<p></p>
+					
+				</section>
+				<section>
+					<h2>🦕 In the beginning&hellip;</h2>
+				</section>
+				<section>
+					<h2>Life was rather simple</h2>
+					<p class="fragment">Java 1.4, 1400 tests in 150 test classes</p>
+					<p class="fragment">Everything run on a manually configured, local machine</p>
+					<p class="fragment">Some nifty tricks in place to exercise the same flows on different UIs</p>
+				</section>
+				<section>
+					<h2>💀 And then that machine died</h2>
+				</section>
+				<section>
+					<h2>How do you avoid this?</h2>
+					<p class="fragment">Migrate to VMs for test environments</p>
+					<p class="fragment">Opportunity to upgrade to more powerful hardware</p>
+					<p class="fragment">More slaves!</p>
+				</section>
+				<section>
+					<h2>🧹 And then the VM infrastructure got consolidated</h2>
+				</section>
+				<section>
+					<h2>The tests we getting slower *anyway*</h2>
+					<p class="fragment">So we moved the CI pipeline to the cloud</p>
+					<p class="fragment subpoint">CI servers deployed in the cloud (just like real environments)</p>
+					<p class="fragment subpoint">Jenkins slaves running in the cloud</p>
+					<p class="fragment">Some wrinkles</p>
+					<p class="fragment subpoint">Source code is not allowed to leave the premises</p>
+					<p class="fragment subpoint">Build Jenkins is invisible to the test Jenkins</p>
+				</section>
+				<section>
+					<h2>🐌 🐢 With big products come big test suites</h2>
+				</section>
+				<section>
+					<h2>It was time to scale horizontally *anyway*</h2>
+					<p class="fragment">Running all the tests on single machine took too long</p>
+					<p class="fragment">Split tests in suites that can be run in parallel</p>
+					<p class="fragment">Optimize build and deployment process</p>
+				</section>
+				<section>
+					<h2>💸 But then cost started to become an issue</h2>
+				</section>
+				<section>
+					<h2>Upgrading the slaves was hard *anyway*</h2>
+					<p class="fragment">Moved from docker-based, statically configured slaves to on-demand, ASG-based slaves</p>
+					<p class="fragment">Time to start mocking some external services, too</p>
+					<p class="fragment">But the test suites are still rather beefy</p>
+				</section>
+				<section>
+					<h2>🚀 To boldy go where no one has gone before</h2>
+				</section>
+				<section>
+					<h2>The future is now</h2>
+					<p class="fragment">Better architecture for better testing</p>
+					<p class="fragment">On-demand CI environments</p>
+					<p class="fragment">In-house test runner</p>
+				</section>
+				<section>
+					<h2>📖 What came out of this?</h2>
+				</section>
+				<section>
+					<h2>Lessons learned</h2>
+					<p class="fragment">Striking a good balance between ease-of-use and ease-of-implementation is hard</p>
+					<p class="fragment">Quick and dirty might end up being slow and dirty</p>
+					<p class="fragment">Don&rsquo;t be afraid to dream</p>
+					<p class="fragment">Don&rsquo;t be afraid to roll your own</p>
+					<p class="fragment subpoint">but only after you squeezed everything out of what you were using before</p>
+					<p class="fragment subpoint">and don&rsquo;t reinvent the wheel</p>
+				</section>
+				<!-- <section>
+					<h2>Timeline</h2>
+					<p>2014 move IMS to AWS</p>
+					<p>2015 improve test run duration from 25 min to 12 min</p>
+					<p>2015-2016 move CI to AWS</p>
+					<p>2017 social (w/ mock and everything)</p>
+					<p>2018 new UI version, with new and improved testing levels</p>
+				</section> -->
+				<section>
+					<h1>Thank you!</h1>
+				</section>
+				<section>
+					<h2>Colophon</h2>
+					<p>Built with ♥ in <a href="https://code.visualstudio.com/">VS Code</a>, using <a href="https://lab.hakim.se/reveal">reveal.js</a></p>
+					<p>Fair trade emojis sourced from <a href="http://emojipedia.org/">Emojipedia</a>; responsibly rendered using ✨<a href="https://github.com/twitter/twemoji">twEmoji</a>✨</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				backgroundTransition: 'slide',
+				transition: 'slide',
+				slideNumber: 'h.v',
+
+				history: true,
+				progress: true,
+				overview: true,
+				
+				width: 800,
+				height: 600,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+			Reveal.addEventListener('ready', function(event) {
+				Reveal.configure({ showNotes: Reveal.getQueryHash()['showNotes'] });
+			});
+			
+			document.addEventListener('DOMContentLoaded', function(event) {
+				twemoji.parse(document.body);
+			});
+		</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-68119344-2', 'auto');ga('send', 'pageview');
+</script>
+	</body>
+</html>
