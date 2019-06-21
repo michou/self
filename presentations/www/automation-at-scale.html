@@ -85,8 +85,7 @@
 					</h1>
 					<h2 style="font-size: 1.8em">Running automation at scale</h2>
 					<p style="text-align: right;">&mdash; Mihai Balan, Adobe Identity/IMS</p>
-					<aside class="notes" data-trim data-markdown>
-Hi, I'm Mihai Balan, I'm a software engineer with the Adobe Identity group, working on IMS – the Identity Management System.
+					<aside class="notes" data-trim data-markdown>Hi, I'm Mihai Balan, I'm a software engineer with the Adobe Identity group, working on IMS – the Identity Management System.
 I've been with this team, this product, for 5+ years now, and I've seen in grow and expand in many ways.
 
 So this talk will be about what this growth meant for testing IMS, and how we approached running automation at scale, inside IMS.
@@ -95,8 +94,7 @@ So this talk will be about what this growth meant for testing IMS, and how we ap
 				<section>
 					<section>
 						<h2>Key takeaways</h2>
-						<aside class="notes" data-trim data-markdown>
-Since what follows is essentially a tale and it might end up rather long-winded, I thought about doing things a little backwards and start with (some) takeaways.
+						<aside class="notes" data-trim data-markdown>Since what follows is essentially a tale and it might end up rather long-winded, I thought about doing things a little backwards and start with (some) takeaways.
 I'll have some more at the end, but in case I cause you to doze off, here's the 3 most important things. Admittedly, thiey might be highly personal, but I think the tale is interesting nonetheless.
 						</aside>
 					</section>
@@ -108,8 +106,7 @@ I'll have some more at the end, but in case I cause you to doze off, here's the 
 							<p>Try to take in and reassess the big picture</p>
 							<p class="fragment subpoint">Unexpected things might end up requiring change</p>
 						</div>
-						<aside class="notes" data-trim data-markdown>
-Sometimes the proverbial poop hits the proverbial fan and you have to put everything on hold to fix whatever caused the breakage.
+						<aside class="notes" data-trim data-markdown>Sometimes the proverbial poop hits the proverbial fan and you have to put everything on hold to fix whatever caused the breakage.
 Usually, these moments are caused by compounded poor decisions along the way and highlight architectural or system weaknesses.
 
 Use this opportunity to try to do things better – architecturally, process-wise, organization-wise.
@@ -131,8 +128,7 @@ The prime example here is adopting Continuous Delivery: it's not only about the 
 						<div class="fragment">
 							<blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">so, you avoid vendor lock-in by building your own. and then later realize you still have vendor lock-in, but you&#39;re the vendor, and there are no other customers. oops.</p>&mdash; Alex Lambert (@alambert) <a href="https://twitter.com/alambert/status/958050456101642241?ref_src=twsrc%5Etfw">January 29, 2018</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 						</div>
-						<aside class="notes" data-trim data-markdown>
-Another thing that we learned the hard way is that, if you decide to move to the cloud, it's best to spend as little time as possible redoing things that the provider already has on offer.
+						<aside class="notes" data-trim data-markdown>Another thing that we learned the hard way is that, if you decide to move to the cloud, it's best to spend as little time as possible redoing things that the provider already has on offer.
 
 There's still plenty of interesting and pressing issues to figure out even without reinventing the wheel.
 						</aside>
@@ -144,8 +140,7 @@ There's still plenty of interesting and pressing issues to figure out even witho
 							<p>&hellip; but it can be done</p>
 							<p>We did it with a mix of shared storage (AWS S3), polling (HTTP) and a lot of brittle conventions</p>
 						</div>
-						<aside class="notes" data-trim data-markdown>
-The final, most pragmatic and probably most personal takeaway is that orchestrating Jenkins instances across network boundaries sucks.
+						<aside class="notes" data-trim data-markdown>The final, most pragmatic and probably most personal takeaway is that orchestrating Jenkins instances across network boundaries sucks.
 
 You can do it, it will work, but it won't get better with age. The only way to make things bearable? Treat infrastructure as code as soon as possible.
 						</aside>
@@ -160,8 +155,7 @@ You can do it, it will work, but it won't get better with age. The only way to m
 						<p class="fragment subpoint">Account recovery</p>
 						<p class="fragment subpoint">Security</p>
 						<p class="fragment subpoint">APIs</p>
-						<aside class="notes" data-trim data-markdown>
-With pretty much most of the wisdom of this talk behind us, let me give you some more context about what IMS _actually_ is, and how we are testing it now.
+						<aside class="notes" data-trim data-markdown>With pretty much most of the wisdom of this talk behind us, let me give you some more context about what IMS _actually_ is, and how we are testing it now.
 
 In a nutshell, the most important and visible things IMS is in charge of is sign in and sign up for all Adobe products.
 And while this might sound like not that much, in fact there's a lot more things happening under the hood.
@@ -175,8 +169,7 @@ As far as direct user interaction is concerned we're dealing with federation, ac
 						<p class="fragment">99.99% availability</p>
 						<p class="fragment subpoint">52 minutes of downtime <strong>per year</strong></p>
 						<p class="fragment">60+ people working on it</p>
-						<aside class="notes" data-trim data-markdown>
-In terms of scale, IMS is currently serving 1+M RPM, sporting an SLA with 4 nines of availability. To put things in perspective, it means that on the whole, we can only have 52 minutes of downtime per year, including maintenance, incidents, attacks.
+						<aside class="notes" data-trim data-markdown>In terms of scale, IMS is currently serving 1+M RPM, sporting an SLA with 4 nines of availability. To put things in perspective, it means that on the whole, we can only have 52 minutes of downtime per year, including maintenance, incidents, attacks.
 
 On the human scale, this means about 60 people working on this system, directly or indirectly.
 And if you think that's a lot, the Identity group at Google has close 1000 people 😎
@@ -189,8 +182,7 @@ And if you think that's a lot, the Identity group at Google has close 1000 peopl
 						<p class="fragment subpoint">multiple federation and authorization models</p>
 						<p class="fragment subpoint"><span class="dimmer">from</span> 4 components <span class="dimmer">to</span> 40+ components</p>
 						<p class="fragment subpoint"><span class="dimmer">from</span> own datacenter <span class="dimmer">to</span> multi-cloud, multi-region</p>
-					<aside class="notes" data-trim data-markdown>
-All the stats that I just gave describe the IMS of today. In the last 5-6 years it has grown however quite a lot to reach these numbers.
+					<aside class="notes" data-trim data-markdown>All the stats that I just gave describe the IMS of today. In the last 5-6 years it has grown however quite a lot to reach these numbers.
 It was not only a growth in number of features, but also in the number of clients, customers and, accordingly, operational complexity.
 
 We went from having multiple UIs for each supported platform: iPhones got an UI, desktop apps got an UI, different web apps got different UIs;
@@ -212,8 +204,7 @@ And we moved from Adobe's US datacenter to AWS and Azure and IMS now has 4 regio
 						<p class="fragment subpoint">Feature-branch validation</p>
 						<p class="fragment subpoint">Post-merge & nightly validation</p>
 						<p class="fragment subpoint">Staging environment validation</p>
-						<aside class="notes" data-trim data-markdown>
-To make sure we don't deploy broken code to our clients and users we have a tiered validation approach.
+						<aside class="notes" data-trim data-markdown>To make sure we don't deploy broken code to our clients and users we have a tiered validation approach.
 There's a lot of end-to-end (we call them integration) tests and, alas, too little unit & functional tests.
 These tests run at different points in the lifecycle of a feature.
 
@@ -231,8 +222,7 @@ Finally, before pushing to code the staging environment everybody else in Adobe 
 						<p class="fragment subpoint">Staging</p>
 						<p class="fragment subpoint">Dev experimental</p>
 						<p class="fragment subpoint">Continuous Integration (CI) validation</p>
-						<aside class="notes" data-trim data-markdown>
-As you might already guess, we don't rely on just our Production environment for these validations.
+						<aside class="notes" data-trim data-markdown>As you might already guess, we don't rely on just our Production environment for these validations.
 In fact, we hardly even test in Production (whether this is a good or bad idea sounds like a nice topic for another presentation).
 We instead rely on multiple levels of pre-Production environments, with more or less official SLAs.
 
@@ -247,8 +237,7 @@ And finally we have a number of Continuous Integration (CI) environments that ar
 						<p class="fragment subpoint"><span class="dimmer">from</span> tests and code running on the same machine <span class="dimmer">to</span> cloud-based Jenkins slaves</p>
 						<p class="fragment subpoint"><span class="dimmer">from</span> a lone mock mail server <span class="dimmer">to</span> multiple mocked & real external services</p>
 						<p class="fragment subpoint"><span class="dimmer">from</span> jMeter <span class="dimmer">to</span> Soasta and Gatling</p>
-						<aside class="notes" data-trim data-markdown>
-As I said about IMS, these stats reflect the current state of our testing infrastructure.
+						<aside class="notes" data-trim data-markdown>As I said about IMS, these stats reflect the current state of our testing infrastructure.
 It too, had come a long way.
 
 It started from scratch with no tests (a couple of years before I joined the team) and a fondness for TestNG. Back when I joined, it already had around 1500 tests. Now, we're nearing 10k
@@ -263,8 +252,7 @@ Finally, we gradfuated from doing load testing using jMeter on one tester's Mac 
 				</section>
 				<section>
 					<h2>🦕 In the beginning&hellip;</h2>
-					<aside class="notes" data-trim data-markdown>
-These being said, let's take the time machine and see how exactly these changes came to be
+					<aside class="notes" data-trim data-markdown>These being said, let's take the time machine and see how exactly these changes came to be
 					</aside>
 				</section>
 				<section>
@@ -273,8 +261,7 @@ These being said, let's take the time machine and see how exactly these changes 
 					<p class="fragment">Everything run on a manually configured, local machine</p>
 					<p class="fragment">Some nifty tricks in place to exercise the same flows on different UIs</p>
 					<p class="fragment">One test suite, run post-commit</p>
-					<aside class="notes" data-trim data-markdown>
-Back when dinosaurs and Java 1.4 still roamed the Earth, ~6 years ago, life was rather simple.
+					<aside class="notes" data-trim data-markdown>Back when dinosaurs and Java 1.4 still roamed the Earth, ~6 years ago, life was rather simple.
 
 The tests were written using Java 1.4, we had about 1400 tests in some 150 classes, and all our test plans were comments in those test classes.
 
@@ -288,8 +275,7 @@ And all was good in the world, and we only had a single test suite, that run **a
 				</section>
 				<section>
 					<h2>💀 And then that machine died</h2>
-					<aside class="notes" data-trim data-markdown>
-This was rather unpleasant since all the setup for the CI environment was long and manual and tedious.
+					<aside class="notes" data-trim data-markdown>This was rather unpleasant since all the setup for the CI environment was long and manual and tedious.
 This was caused by the fact that you had the setup both the environment for the actual product and for the test run.
 					</aside>
 				</section>
@@ -300,8 +286,7 @@ This was caused by the fact that you had the setup both the environment for the 
 					<p class="fragment">More slaves!</p>
 					<p class="fragment subpoint">Code coverage</p>
 					<p class="fragment subpoint">Feature-branch validation</p>
-					<aside class="notes" data-trim data-markdown>
-So after we realized that one way or another we'll have to do it all over again, we asked ourselves, what can we do to make this the _last_ time we have to do it?
+					<aside class="notes" data-trim data-markdown>So after we realized that one way or another we'll have to do it all over again, we asked ourselves, what can we do to make this the _last_ time we have to do it?
 The obvious answer was to use Virtual Machines.
 
 Where we previously had a "server" we managed ourselves (actually a workstation under one of the developer's desks), we moved to a dedicated VM server that was managed by the local IT support team.
@@ -312,8 +297,7 @@ we added separate slaves for building the code and running the tests, started do
 				</section>
 				<section>
 					<h2>🧹 And then the VM infrastructure got consolidated</h2>
-					<aside class="notes" data-trim data-markdown>
-It wasn't perfect, it wasn't all magic and fairy dust, but at least you didn't have to crawl under a desk anymore.
+					<aside class="notes" data-trim data-markdown>It wasn't perfect, it wasn't all magic and fairy dust, but at least you didn't have to crawl under a desk anymore.
 But one fateful day, it was decided (very _high up_) the VM infrastructure will be consolidated and offered as a service (think Adobe building it's own toy AWS inside the intranet)
 					</aside>
 				</section>
@@ -326,8 +310,7 @@ But one fateful day, it was decided (very _high up_) the VM infrastructure will 
 					<p class="fragment">But&hellip;</p>
 					<p class="fragment subpoint">Source code is not allowed to leave the premises</p>
 					<p class="fragment subpoint">Build Jenkins is invisible to the test Jenkins</p>
-					<aside class="notes" data-trim data-markdown>
-Given the hard deadline and a mandate to move out of the soon-to-be-decommissioned local lab, we also confronted the harsh truth:
+					<aside class="notes" data-trim data-markdown>Given the hard deadline and a mandate to move out of the soon-to-be-decommissioned local lab, we also confronted the harsh truth:
 not only were the tests getting slower (by sheer virtue of number), but they were also on the critical path.
 And to top it off, because of the rather big configuration mismatch between real and CI environments some bugs were only found in the "real" environments.
 
@@ -339,8 +322,7 @@ There were some problems however: the code wasn't allowed to leave the Intranet,
 				</section>
 				<section>
 					<h2>🐢 With big products come big test suites</h2>
-					<aside class="notes" data-trim data-markdown>
-The solution we ended up with for the test runners, involved an intranet Jenkins that build the code and an AWS-based Jenkins master, with a manually configured set of slaves on which docker was used to actually run the tests.
+					<aside class="notes" data-trim data-markdown>The solution we ended up with for the test runners, involved an intranet Jenkins that build the code and an AWS-based Jenkins master, with a manually configured set of slaves on which docker was used to actually run the tests.
 The intranet Jenkins would build the artifacts, upload them to S3 and then hit the AWS Jenkins' endpoint to start a job. It would then keep polling the AWS Jenkins for results until the tests were finished.
 
 It was still clunky at times, and changing software dependencies was tedious, but using docker to configure the environment and run the tests sure beat SSH-ing and apt-get-ing on actual machines (virtual or otherwise).
@@ -351,8 +333,7 @@ It was still clunky at times, and changing software dependencies was tedious, bu
 					<p class="fragment">Running all the tests on single machine took too long</p>
 					<p class="fragment">Split tests in suites that can be run in parallel</p>
 					<p class="fragment">Optimize build and deployment process</p>
-					<aside class="notes" data-trim data-markdown>
-However, the AWS high didn't last long; we were reaching a point where the initial 8-cores, 32GB RAM machines weren't enough and even moving to 16-cores, 64GB RAM machines didn't improve things enough to justify the price difference.
+					<aside class="notes" data-trim data-markdown>However, the AWS high didn't last long; we were reaching a point where the initial 8-cores, 32GB RAM machines weren't enough and even moving to 16-cores, 64GB RAM machines didn't improve things enough to justify the price difference.
 This was caused by the fact that the tests themselves, were split in 2 test suites (rather arbitrarily) and test suite parallelization on a single machine just didn't scale well.
 
 To put things in perspective, we were already using 3 CI environments: 2 for feature-branch validation and one for mainline validation and still the test suites were using more computing power than the CI environments they were hitting.
@@ -364,8 +345,7 @@ Again, some rather smart people also managed to squeeze some precious minutes ou
 				</section>
 				<section>
 					<h2>💸 But then cost started to become an issue</h2>
-					<aside class="notes" data-trim data-markdown>
-One of the shortcomings of this solution was that the Jenkins slaves were up and incurring costs 24/7, even when no tests were running.
+					<aside class="notes" data-trim data-markdown>One of the shortcomings of this solution was that the Jenkins slaves were up and incurring costs 24/7, even when no tests were running.
 Initially, for all things cloud, cost was not an issue, but as everything got migrated, management started to clamp down on costs.
 					</aside>
 				</section>
@@ -374,8 +354,7 @@ Initially, for all things cloud, cost was not an issue, but as everything got mi
 					<p class="fragment">Moved from docker-based, statically configured slaves to on-demand, ASG-based slaves</p>
 					<p class="fragment">Time to start mocking some external services, too</p>
 					<p class="fragment">But the test suites are still rather beefy</p>
-					<aside class="notes" data-trim data-markdown>
-At the same time, we had some gripes of our own, namely the tediousness of changing the software configuration of the slaves, which involved changing a dockerfile in the code repo, committing the change and then making sure the change got propagated.
+					<aside class="notes" data-trim data-markdown>At the same time, we had some gripes of our own, namely the tediousness of changing the software configuration of the slaves, which involved changing a dockerfile in the code repo, committing the change and then making sure the change got propagated.
 And this was the happy case where you knew exactly what needed changing, and how. In addition, since the Jenkins slaves were statically configured, adding a new slave was a matter of hours, as it had to be manually configured, at least up to a point.
 
 In keeping with the configuration-as-code mantra, we decided to migrate to a on-demand system, where slaves would be spun up and down for each test run.
@@ -391,8 +370,7 @@ massive test suites that take a non-negligible amount of time to run.
 				</section>
 				<section>
 					<h2>🚀 To boldy go where no one has gone before</h2>
-					<aside class="notes" data-trim data-markdown>
-The good thing is, after a rather radical reorganization (more on which maybe some other time), we did start working on things I wouldn't have hoped to see done before 2020 😅.
+					<aside class="notes" data-trim data-markdown>The good thing is, after a rather radical reorganization (more on which maybe some other time), we did start working on things I wouldn't have hoped to see done before 2020 😅.
 					</aside>
 				</section>
 				<section>
@@ -402,8 +380,7 @@ The good thing is, after a rather radical reorganization (more on which maybe so
 					<p class="fragment">Performance tests as code</p>
 					<p class="fragment">On-demand CI environments</p>
 					<p class="fragment">In-house test runner</p>
-					<aside class="notes" data-trim data-markdown>
-As I mentioned at the beginning of the talk, we're in the process of rolling out a new and improved UI. This new system had the benefit of starting from scratch, which enabled us to reconsider and improve our building and testing in many ways:
+					<aside class="notes" data-trim data-markdown>As I mentioned at the beginning of the talk, we're in the process of rolling out a new and improved UI. This new system had the benefit of starting from scratch, which enabled us to reconsider and improve our building and testing in many ways:
 - we have a radically more testable architecture. To give you a sense of scale, where in the "old" system about 15% of the tests were unit and functional and 85% were end-to-end integration test, for the new UI we have only about 100 end-to-end tests, and about 95% of all tests are unit and functional (component) tests
 - we have more granular pipelines and we're one-step away from real CD – right now we're only delivering up to stage
 - we took our testing tooklit up a notch with Kotlin
@@ -415,8 +392,7 @@ And we're also doing some really exciting work, enabling the old testing framewo
 				</section>
 				<section>
 					<h2>📖 What came out of this?</h2>
-					<aside class="notes" data-trim data-markdown>
-I know this was a long story, and I also divulged the key takeaways before hand, but let's dive a little deeper in what did we learn – and might be useful for you as well.
+					<aside class="notes" data-trim data-markdown>I know this was a long story, and I also divulged the key takeaways before hand, but let's dive a little deeper in what did we learn – and might be useful for you as well.
 					</aside>
 				</section>
 				<section>
@@ -428,8 +404,7 @@ I know this was a long story, and I also divulged the key takeaways before hand,
 						<p class="fragment">Tests performance profiling matters</p>
 						<p class="fragment subpoint">Mind your pre/post-test code</p>
 						<p class="fragment subpoint">Know thy framework</p>
-						<aside class="notes" data-trim data-markdown>
-Some of these lessons, we learned them the hard way – whether that meant long hours spent on trivial issues, handling deal-breaker performance bottlenecks or just diving deep into the guts of TestNG or Spring.
+						<aside class="notes" data-trim data-markdown>Some of these lessons, we learned them the hard way – whether that meant long hours spent on trivial issues, handling deal-breaker performance bottlenecks or just diving deep into the guts of TestNG or Spring.
 
 First and foremost, it turns out that oftentimes removing code is a lot harder than putting it in, and even moreso when it comes to test code and test infrastructure code.
 We recently spent the better part of 2 months to remove from the testing framework the code that tested – and relied on – code that was deprecated in production more than a year ago.
@@ -451,8 +426,7 @@ As an example, just recently I spent the better part of a month hunting down a a
 						<p class="fragment subpoint">Also, the testing pyramid is real</p>
 						<p class="fragment">Don&rsquo;t be afraid to dream, but advocate for extra testability while you&rsquo;re at it</p>
 						<p class="fragment">Don&rsquo;t be afraid to roll your own</p>
-						<aside class="notes" data-trim data-markdown>
-But there were also some things that really made me happy and gave me hope.
+						<aside class="notes" data-trim data-markdown>But there were also some things that really made me happy and gave me hope.
 
 In the early configurations of the teams, writing tests and making sure they were running properly, and fast, and passing was the sole responsibility of the testers.
 But as more people started contributing and as developers started writing tests, people (developers, that is), started complaining about usability and performance issues with the testing framework.
@@ -473,8 +447,7 @@ A couple of years ago, I thought it was cool to roll my own version of Selenium 
 				</section>
 				<section>
 					<h1>Thank you!</h1>
-					<aside class="notes" data-trim data-markdown>
-That was my story, hope you find useful.
+					<aside class="notes" data-trim data-markdown>That was my story, hope you find useful.
 
 Thank you!
 					</aside>
