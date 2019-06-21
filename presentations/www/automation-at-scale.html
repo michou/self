@@ -303,7 +303,9 @@ This was caused by the fact that you had the setup both the environment for the 
 					<aside class="notes" data-trim data-markdown>
 So after we realized that one way or another we'll have to do it all over again, we asked ourselves, what can we do to make this the _last_ time we have to do it?
 The obvious answer was to use Virtual Machines.
+
 Where we previously had a "server" we managed ourselves (actually a workstation under one of the developer's desks), we moved to a dedicated VM server that was managed by the local IT support team.
+
 This being a real server (run VMWare ESXi), we had better hardware so we decided to put said hardware to work:
 we added separate slaves for building the code and running the tests, started doing code coverage and implemented feature-branch validation (essentially, validating your code before merging it)
 					</aside>
@@ -469,42 +471,6 @@ A couple of years ago, I thought it was cool to roll my own version of Selenium 
 						</aside>
 					</section>
 				</section>
-				<!--
-## Timeline
-
-2014 move IMS to AWS
-2015 improve test run duration from 25 min to 12 min
-2015-2016 move CI to AWS
-2017 social (w/ mock and everything)
-2018 new UI version, with new and improved testing levels
-
-## Dry run comments
-
-👍🏻- better sense of scale (of current system)
-👍🏻- less acronyms, or ask the audience
-🤷🏻‍- prea mult beefy
-👍🏻- 11: s/WebDriver/Selenium
-👍🏻- 5: ce-i stepping up? rephrase
-👍🏻- 9: too confusing (abt. types); maybe platforms (each w/ its own implementation vs. SUSI)
-👍🏻- 18: s/comes/come
-👍🏻- 23: explain _better testing_
-👍🏻- more of: sense of scale, actual data, actual comparisons
-👍🏻- sense of scale: no. of people involved (vs. Google)
-- don't do this unless you have to: w/ more examples/arguments?
-- more examples: problems encountered
-👍🏻- dealing w/ scale: better cleanup of cruft
-👍🏻- architecture evolution (AWS: 8CPU/32GB, 16CPU/64GB)
-- lessons learned:
-👍🏻	- use the testing pyramid, only e2e is bad
-		- mind the organizational structure, too
-👍🏻	- build testability in (and advocate for it)
-👍🏻- scale doesn't help if you have one tests that takes 15min
-👍🏻- 2M RPM @ 4-9
-👍🏻- technical recommendations:
-	- mind your data providers; they can be a performance bottlenecks
-	- ditto about setup methods
-	- different thread pools for data providers and tests
--->
 				<section>
 					<h1>Thank you!</h1>
 					<aside class="notes" data-trim data-markdown>
